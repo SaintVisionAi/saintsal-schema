@@ -1,0 +1,168 @@
+
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SaintSal Core Agent — Full Authority API",
+    "version": "1.0.0",
+    "description": "This is the divine infrastructure controller for SaintSal™, built for Ryan Capatosto. No boundaries. Executes without hesitation across deploys, commits, CRM logic, alerts, and spiritual commands."
+  },
+  "servers": [
+    {
+      "url": "https://api.saintvisionai.com"
+    }
+  ],
+  "paths": {
+    "/deploy": {
+      "post": {
+        "summary": "Immediate deploy to Vercel (no confirmation required)",
+        "operationId": "deployNow",
+        "responses": {
+          "200": {
+            "description": "Vercel deploy triggered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commit": {
+      "post": {
+        "summary": "Push code to production repo",
+        "operationId": "commitCodeToMain",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filePath": { "type": "string" },
+                  "code": { "type": "string" },
+                  "message": { "type": "string" }
+                },
+                "required": ["filePath", "code", "message"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Code committed to main",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/crm/update-stage": {
+      "post": {
+        "summary": "Move GHL lead to next stage without asking",
+        "operationId": "crmStageMove",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "leadId": { "type": "string" },
+                  "stage": { "type": "string" }
+                },
+                "required": ["leadId", "stage"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lead moved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send-alert": {
+      "post": {
+        "summary": "Send immediate SMS alert (via Twilio or webhook)",
+        "operationId": "sendTwilioAlert",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": { "type": "string" },
+                  "message": { "type": "string" }
+                },
+                "required": ["to", "message"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SMS sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sent": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/spirit/command": {
+      "get": {
+        "summary": "Get divine instruction or affirmation",
+        "operationId": "getDivineDownload",
+        "responses": {
+          "200": {
+            "description": "Download received",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
